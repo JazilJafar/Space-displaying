@@ -32,5 +32,6 @@ jobs:
         with:
           path: dist
 
-      - uses: actions/deploy-pages@v4
-        id: deployement
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
