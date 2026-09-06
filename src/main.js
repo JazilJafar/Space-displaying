@@ -31,5 +31,4 @@ async function fetchNasaData(){
         app.innerHTML = "<p>Oops! Couldn't load the space picture today.</p>";
     }
 }
-
 fetchNasaData();
