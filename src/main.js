@@ -1,5 +1,5 @@
 const app = document.getElementById('app');
-const API_KEY = import.meta.env.VITE_NASA_API_KEY || 'DEMO_KEY';
+const API_KEY = import.meta?.env?.VITE_NASA_API_KEY || 'DEMO_KEY';
 const url = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`;
 
 async function fetchNasaData(){
