@@ -1,5 +1,16 @@
 const app = document.getElementById('app');
-const API_KEY = import.meta?.env?.VITE_NASA_API_KEY || 'DEMO_KEY';
+
+// Safely retrieve the API key without crashing if import.meta.env is undefined
+let envKey;
+try {
+    envKey = (typeof import.meta !== 'undefined' && import.meta.env) 
+        ? import.meta.env.VITE_NASA_API_KEY 
+        : undefined;
+} catch (e) {
+    envKey = undefined;
+}
+
+const API_KEY = envKey || 'DEMO_KEY';
 const url = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`;
 
 async function fetchNasaData(){
@@ -20,4 +31,5 @@ async function fetchNasaData(){
         app.innerHTML = "<p>Oops! Couldn't load the space picture today.</p>";
     }
 }
+
 fetchNasaData();
