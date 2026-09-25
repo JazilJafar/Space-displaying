@@ -1,6 +1,10 @@
 const app = document.getElementById('app');
-
-// Safely retrieve the API key without crashing if import.meta.env is undefined
+const datePicker = document.getElementById('datepicker');
+const today = new Date().toISOString().split('T')[0];
+if (datePicker) {
+    datePicker.max = today;
+    datePicker.value = today;
+}
 let envKey;
 try {
     envKey = (typeof import.meta !== 'undefined' && import.meta.env) 
@@ -22,7 +26,7 @@ async function fetchNasaData(){
         const data = await response.json();
 
         app.innerHTML = `
-         <h1>${data.title}</h1>
+         <h2>${data.title}</h2>
          <img src="${data.url}" alt="${data.title}" style="max-width: 100%; height: auto;" />
          <p>${data.explanation}</p>
         `;
